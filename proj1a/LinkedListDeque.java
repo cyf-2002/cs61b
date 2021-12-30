@@ -79,17 +79,23 @@ public class LinkedListDeque<T> {
     }
 
     //从头部移除数据
-    public void removeFirst() {
+    public T removeFirst() {
+        T item = sentinel.next.item;
         sentinel.next.next.prev = sentinel;
         sentinel.next = sentinel.next.next;
         size -= 1;
+
+        return item;
     }
 
     //从尾部移除数据
-    public void removeLast() {
+    public T removeLast() {
+        T item = sentinel.prev.item;
         sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
         size -= 1;
+
+        return item;
     }
 
     //返回指定下标的item
