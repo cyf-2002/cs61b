@@ -1,9 +1,9 @@
 public class LinkedListDeque<T> {
     //创建节点
     public class IntNode {
-        public IntNode prev;
-        public T item;
-        public IntNode next;
+        private IntNode prev;
+        private T item;
+        private IntNode next;
 
         public IntNode(T i, IntNode n, IntNode p) {
             item = i;
@@ -12,8 +12,8 @@ public class LinkedListDeque<T> {
         }
     }
 
-    public int size;
-    public IntNode sentinel;
+    private int size;
+    private IntNode sentinel;
 
     //创建空链表
     public LinkedListDeque() {
@@ -34,14 +34,6 @@ public class LinkedListDeque<T> {
             size += 1;
         }
 
-    }
-
-    //创建非空链表
-    public LinkedListDeque(T item) {
-        sentinel = new IntNode(null, null, null);
-        sentinel.next = new IntNode(item, sentinel, sentinel);
-        sentinel.prev = sentinel.next;
-        size = 1;
     }
 
     //链表头添加数据
@@ -80,22 +72,26 @@ public class LinkedListDeque<T> {
 
     //从头部移除数据
     public T removeFirst() {
-        T item = sentinel.next.item;
-        sentinel.next.next.prev = sentinel;
-        sentinel.next = sentinel.next.next;
-        size -= 1;
-
-        return item;
+        if (!isEmpty()) {
+            T item = sentinel.next.item;
+            sentinel.next.next.prev = sentinel;
+            sentinel.next = sentinel.next.next;
+            size -= 1;
+            return item;
+        }
+        return null;
     }
 
     //从尾部移除数据
     public T removeLast() {
-        T item = sentinel.prev.item;
-        sentinel.prev.prev.next = sentinel;
-        sentinel.prev = sentinel.prev.prev;
-        size -= 1;
-
-        return item;
+        if (!isEmpty()) {
+            T item = sentinel.prev.item;
+            sentinel.prev.prev.next = sentinel;
+            sentinel.prev = sentinel.prev.prev;
+            size -= 1;
+            return item;
+        }
+        return null;
     }
 
     //返回指定下标的item
@@ -111,7 +107,7 @@ public class LinkedListDeque<T> {
     }
 
     //递归获取指定下标的item
-    public T getRecursiveHelper(IntNode a, int i) {
+    private T getRecursiveHelper(IntNode a, int i) {
         if (i == 0) {
             return a.next.item;
         } else {
@@ -127,16 +123,6 @@ public class LinkedListDeque<T> {
         }
         IntNode p = sentinel;
         return getRecursiveHelper(p, index);
-    }
-
-    public static void main(String[] args) {
-        LinkedListDeque<Integer> t = new LinkedListDeque<>();
-        t.addFirst(1);
-        t.addFirst(2);
-        t.addFirst(3);
-        t.addLast(4);
-        System.out.println(t.getRecursive(3));
-
     }
 
 }

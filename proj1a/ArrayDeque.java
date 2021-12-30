@@ -81,28 +81,33 @@ public class ArrayDeque<T> {
 
     //从头部移除数据
     public T removeFirst() {
-        T item = items[head];
-        items[head] = null;
-        head = getMod(head + 1);
-        size -= 1;
-        if (size <= items.length / 2) {
-            resizemin();
+        if (!isEmpty()) {
+            T item = items[head];
+            items[head] = null;
+            head = getMod(head + 1);
+            size -= 1;
+            if (size <= items.length / 2) {
+                resizemin();
+            }
+            return item;
         }
-
-        return item;
+        return null;
     }
 
     //从尾部移除数据
     public T removeLast() {
-        T item = items[tail];
-        items[tail] = null;
-        tail = getMod(tail - 1);
-        size -= 1;
-        if (size < items.length / 2) {
-            resizemin();
+        if (!isEmpty()) {
+            int newtail = getMod(tail - 1);
+            T item = items[newtail];
+            items[tail] = null;
+            tail = newtail;
+            size -= 1;
+            if (size < items.length / 2) {
+                resizemin();
+            }
+            return item;
         }
-
-        return item;
+        return null;
     }
 
     //返回指定下标的item
