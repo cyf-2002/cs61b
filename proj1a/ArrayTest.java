@@ -4,7 +4,7 @@ import org.junit.Test;
 public class ArrayTest {
     @Test
     public void test1() {
-        ArrayDeque ar = new ArrayDeque();
+        ArrayDeque<Integer> ar = new ArrayDeque<>();
 
         ar.addLast(2);
         ar.addLast(3);
@@ -25,7 +25,7 @@ public class ArrayTest {
         ar.removeFirst();
         ar.printDeque();
 
-        ArrayDeque ar1 = new ArrayDeque(ar);
+        ArrayDeque<Integer> ar1 = new ArrayDeque<>(ar);
 
         ar1.printDeque();
     }

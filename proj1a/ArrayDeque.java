@@ -1,11 +1,11 @@
-public class ArrayDeque {
-    int[] items;
+public class ArrayDeque<T> {
+    T[] items;
     int size;
     int head;
     int tail;
 
     public ArrayDeque() {
-        items = new int[8];
+        items = (T[]) new Object[8];
         size = 0;
         //第一位元素
         head = 0;
@@ -30,7 +30,7 @@ public class ArrayDeque {
     /**
      * Inserts X into the first of the list.
      */
-    public void addFirst(int x) {
+    public void addFirst(T x) {
         head = getMod(head - 1);
         items[head] = x;
         size += 1;
@@ -42,7 +42,7 @@ public class ArrayDeque {
     /**
      * Inserts X into the back of the list.
      */
-    public void addLast(int x) {
+    public void addLast(T x) {
         items[tail] = x;
         tail = getMod(tail + 1);
         size += 1;
@@ -80,9 +80,9 @@ public class ArrayDeque {
     }
 
     //从头部移除数据
-    public int removeFirst() {
-        int item = items[head];
-        items[head] = 0;
+    public T removeFirst() {
+        T item = items[head];
+        items[head] = null;
         head = getMod(head + 1);
         size -= 1;
         if (size <= items.length / 2) {
@@ -93,9 +93,9 @@ public class ArrayDeque {
     }
 
     //从尾部移除数据
-    public int removeLast() {
-        int item = items[tail];
-        items[tail] = 0;
+    public T removeLast() {
+        T item = items[tail];
+        items[tail] = null;
         tail = getMod(tail - 1);
         size -= 1;
         if (size < items.length / 2) {
@@ -106,7 +106,7 @@ public class ArrayDeque {
     }
 
     //返回指定下标的item
-    public int get(int index) {
+    public T get(int index) {
         return items[index];
     }
 
@@ -114,20 +114,16 @@ public class ArrayDeque {
      * 调整数组大小
      */
     private void resizemax() {
-        int[] newitems = new int[items.length * 2];
-        if (head < tail) {
-            System.arraycopy(items, head, newitems, 0, size);
+        T[] newitems = (T[]) new Object[items.length * 2];
 
-        } else {
-            int j = 0;
-            for (int i = head; i < items.length; i++) {
-                newitems[j++] = items[i];
-            }
-            for (int i = 0; i < tail - 1; i++) {
-                newitems[j++] = items[i];
-            }
-
+        int j = 0;
+        for (int i = head; i < items.length; i++) {
+            newitems[j++] = items[i];
         }
+        for (int i = 0; i < head; i++) {
+            newitems[j++] = items[i];
+        }
+
         tail = size;
         head = 0;
         items = newitems;
@@ -135,7 +131,7 @@ public class ArrayDeque {
     }
 
     private void resizemin() {
-        int[] newitems = new int[items.length / 2];
+        T[] newitems = (T[]) new Object[items.length / 2];
         if (head < tail) {
             System.arraycopy(items, head, newitems, 0, size);
 
@@ -158,8 +154,8 @@ public class ArrayDeque {
     /**
      * 复制
      */
-    public ArrayDeque(ArrayDeque other) {
-        items = new int[other.items.length];
+    public ArrayDeque(ArrayDeque<T> other) {
+        items = (T[]) new Object[other.items.length];
         head = other.head;
         tail = other.tail;
         size = other.size;
