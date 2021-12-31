@@ -34,7 +34,7 @@ public class ArrayDeque<T> {
         if (size == 0) {
             items[head] = x;
             tail = getMod(tail + 1);
-        }else{
+        } else {
             head = getMod(head - 1);
             items[head] = x;
         }
