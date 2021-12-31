@@ -24,17 +24,17 @@ public class LinkedListDeque<T> {
     }
 
     //拷贝
-    public LinkedListDeque(LinkedListDeque other) {
+    /*public LinkedListDeque(LinkedListDeque other) {
         sentinel = new IntNode(null, null, null);
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
         size = 0;
         for (int i = 0; i < other.size(); i++) {
-            addLast((T)other.get(i));
+            addLast((T) other.get(i));
             size += 1;
         }
 
-    }
+    }*/
 
     //链表头添加数据
     public void addFirst(T item) {

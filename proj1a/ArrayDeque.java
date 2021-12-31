@@ -31,7 +31,9 @@ public class ArrayDeque<T> {
      * Inserts X into the first of the list.
      */
     public void addFirst(T x) {
-        head = getMod(head - 1);
+        if (! isEmpty()) {
+            head = getMod(head - 1);
+        }
         items[head] = x;
         size += 1;
         if (head == tail) {
@@ -159,7 +161,7 @@ public class ArrayDeque<T> {
     /**
      * 复制
      */
-    public ArrayDeque(ArrayDeque other) {
+  /*  public ArrayDeque(ArrayDeque other) {
         items = (T[]) new Object[other.items.length];
         head = other.head;
         tail = other.tail;
@@ -171,6 +173,6 @@ public class ArrayDeque<T> {
             System.arraycopy(other.items, 0, items, 0, other.tail);
         }
 
-    }
+    }*/
 
 }
