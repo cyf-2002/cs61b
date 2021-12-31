@@ -31,7 +31,7 @@ public class ArrayDeque<T> {
      * Inserts X into the first of the list.
      */
     public void addFirst(T x) {
-        if (!isEmpty()) {
+        if (size != 0) {
             head = getMod(head - 1);
         }
         items[head] = x;
