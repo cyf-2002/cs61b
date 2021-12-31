@@ -86,7 +86,7 @@ public class ArrayDeque<T> {
             items[head] = null;
             head = getMod(head + 1);
             size -= 1;
-            if (size <= items.length / 2) {
+            if (size <= items.length / 3) {
                 resizemin();
             }
             return item;
@@ -99,10 +99,10 @@ public class ArrayDeque<T> {
         if (!isEmpty()) {
             int newtail = getMod(tail - 1);
             T item = items[newtail];
-            items[tail] = null;
+            items[newtail] = null;
             tail = newtail;
             size -= 1;
-            if (size < items.length / 2) {
+            if (size < items.length / 3) {
                 resizemin();
             }
             return item;
@@ -164,10 +164,10 @@ public class ArrayDeque<T> {
         head = other.head;
         tail = other.tail;
         size = other.size;
-        if (other.head < other.tail) {
-            System.arraycopy(other.items, other.head, items, other.head, other.tail - other.head);
+        if (head < tail) {
+            System.arraycopy(other.items, head, items, head, tail - head);
         } else {
-            System.arraycopy(other.items, other.head, items, other.head, other.items.length - other.head);
+            System.arraycopy(other.items, head, items, head, other.items.length - head);
             System.arraycopy(other.items, 0, items, 0, other.tail);
         }
 

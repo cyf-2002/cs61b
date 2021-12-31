@@ -1,6 +1,6 @@
 public class LinkedListDeque<T> {
     //创建节点
-    public class IntNode {
+    private class IntNode {
         private IntNode prev;
         private T item;
         private IntNode next;
