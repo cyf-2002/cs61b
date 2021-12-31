@@ -86,7 +86,7 @@ public class ArrayDeque<T> {
             items[head] = null;
             head = getMod(head + 1);
             size -= 1;
-            if (size <= items.length / 3) {
+            if (size <= items.length / 3 && items.length > 8) {
                 resizemin();
             }
             return item;
@@ -102,7 +102,7 @@ public class ArrayDeque<T> {
             items[newtail] = null;
             tail = newtail;
             size -= 1;
-            if (size < items.length / 3) {
+            if (size < items.length / 3 && items.length > 8) {
                 resizemin();
             }
             return item;
@@ -159,7 +159,7 @@ public class ArrayDeque<T> {
     /**
      * 复制
      */
-    public ArrayDeque(ArrayDeque<T> other) {
+    public ArrayDeque(ArrayDeque other) {
         items = (T[]) new Object[other.items.length];
         head = other.head;
         tail = other.tail;

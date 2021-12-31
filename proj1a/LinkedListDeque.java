@@ -24,13 +24,13 @@ public class LinkedListDeque<T> {
     }
 
     //拷贝
-    public LinkedListDeque(LinkedListDeque<T> other) {
+    public LinkedListDeque(LinkedListDeque other) {
         sentinel = new IntNode(null, null, null);
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
         size = 0;
         for (int i = 0; i < other.size(); i++) {
-            addLast(other.get(i));
+            addLast((T)other.get(i));
             size += 1;
         }
 
