@@ -31,10 +31,14 @@ public class ArrayDeque<T> {
      * Inserts X into the first of the list.
      */
     public void addFirst(T x) {
-        if (size != 0) {
+        if (size == 0) {
+            items[head] = x;
+            tail = getMod(tail + 1);
+        }else{
             head = getMod(head - 1);
+            items[head] = x;
         }
-        items[head] = x;
+
         size += 1;
         if (head == tail) {
             resizemax();
